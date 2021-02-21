@@ -1,0 +1,1 @@
+Creating an etch a sketch using DOM manipulation
