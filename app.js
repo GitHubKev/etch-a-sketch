@@ -50,6 +50,9 @@ function updateGrid(){
 //run the function clearGrid when the Clear Grid button is called
 clearGridButton.addEventListener("click", clearGrid)
 
+//the grid is stored in the variable x
+let x = container.getElementsByClassName("grid") 
+
 //clearGrid clears the grid and removes all red squares
 function clearGrid(){
     for(let i=0; i<x.length; i++){
