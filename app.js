@@ -1,61 +1,61 @@
 const container = document.getElementById("container")
-const buttons = document.querySelector("input")
+const changeGridButton = document.querySelector(".change")
+const clearGridButton = document.querySelector(".clear")
 
 //use a function to create the grid with # of rows and columns (both would be the same #)
-function createGrid(row, column){
-    container.style.setProperty('--grid-rows', row)
-    container.style.setProperty('--grid-columns', column)
-
-    for(let i=0; i < (row * column); i++){
-        let cell = document.createElement("div")
-        container.appendChild(cell).className = ("grid")
+function createGrid(num){
+    container.style.setProperty("--grid-rows", num);
+    container.style.setProperty("--grid-columns", num);
+    for(let i=0; i<num * num; i++){
+        let div = document.createElement("div")
+        container.appendChild(div).className = ("grid")
+        
+        let x = container.getElementsByClassName("grid") //the grid is stored in the variable x
+        for(let i=0; i<x.length; i++){ // loop over the grid
+            // when the mouse is over a specific grid, change the color where it is hovered.
+            x[i].addEventListener("mouseover", function(){
+                x[i].style.backgroundColor = "red"
+            })
+        }
     }
 }
+createGrid(16)
 
-window.onload = createGrid(5,5)
-
-function newGrid(){
-    let gridSize = prompt("Enter new size")
-    if(parseInt(gridSize) > 64){
-        alert("Enter a number from 1-64")
-        prompt("Enter new size")
+//updates the grid when "Change Size" button is pressed
+function updateGrid(){
+    //prompt pops up allowing user to enter a # from 1-64
+    let gridSize = prompt("Enter a number from 1-64")
+    //if user clicks "cancel" the function break out early, cancel returns null
+    if(gridSize === null){
+        return
+    //if gridSize has no value, run newGrid() again from the start
+    } else if (!gridSize) {
+        alert("Please enter a number")
+        updateGrid()
+    //if the # entered > 64, alert user then run newGrid() again
+    } else if(parseInt(gridSize) > 64){
+        alert("Number is too big, only numbers from 1-64")
+        updateGrid()
+    //if the # entered is < 0, alert user then run newGrid() again
+    } else if (parseInt(gridSize) <= 0){
+        alert("Number is too small, only numbers greater than 0")
+        updateGrid()
+    //if # is between 1-64 then create the grid with createGrid()
     } else{
-        createGrid(gridSize, gridSize)
+        container.textContent = ""; // remove the grid from before
+        createGrid(gridSize) // create new grid with the input size
     }
-}
-
-
-//the grid is stored in the variable x
-let x = container.getElementsByClassName("grid")
-
-//loop over the grid
-for(let i=0; i<x.length; i++){
-    // when the mouse is over a specific grid, change the color where it is hovered.
-    x[i].addEventListener("mouseover", function(){
-        x[i].style.backgroundColor = "red"
-    })
 }
 
 //run the function clearGrid when the Clear Grid button is called
-document.getElementById("clear").addEventListener("click", clearGrid)
-
+clearGridButton.addEventListener("click", clearGrid)
 
 //clearGrid clears the grid and removes all red squares
 function clearGrid(){
-    alert("i got clicked")
-    container.getElementsByClassName("grid").style.removeProperty("background-color")
+    for(let i=0; i<x.length; i++){
+        x[i].style = null
+    }
 }
 
-
-
-buttons.forEach(button => {
-    button.addEventListener("click", function(){
-        newGrid()
-    })
-});
-
-
-
-
-
-
+//run the function newGrid when the change grid button is clicked
+changeGridButton.addEventListener("click", updateGrid)
