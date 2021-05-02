@@ -22,3 +22,20 @@ body{
     text-align: center;
     padding-bottom: 20px;
 }
+.change, .clear{
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
+    background-color: rgb(30, 255, 0);
+    border-radius: 8px;
+    outline: none;
+}
+footer{
+    margin-top: 1%;
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
