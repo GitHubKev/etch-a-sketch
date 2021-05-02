@@ -1,9 +1,11 @@
 h1{
     text-align: center;
     color: white;
+    font-size: 3.5em;
 }
 body{
     background-color: #195e28;
+    font-family: 'Cabin Sketch', cursive;
 }
 #container{
     display: grid;
@@ -11,6 +13,7 @@ body{
     min-height: 500px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-columns), 1fr);
+    margin: 0 auto;
 }
 .grid{
     border: 1px solid;
