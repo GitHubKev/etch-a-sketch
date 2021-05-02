@@ -14,11 +14,16 @@ function createGrid(num){
         for(let i=0; i<x.length; i++){ // loop over the grid
             // when the mouse is over a specific grid, change the color where it is hovered.
             x[i].addEventListener("mouseover", function(){
-                x[i].style.backgroundColor = "red"
+                const r = Math.floor(Math.random() * 256)
+                const g = Math.floor(Math.random() * 256)
+                const b = Math.floor(Math.random() * 256)
+                x[i].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
             })
         }
     }
 }
+
+
 createGrid(16)
 
 //updates the grid when "Change Size" button is pressed
